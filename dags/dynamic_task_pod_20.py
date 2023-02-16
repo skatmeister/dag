@@ -23,6 +23,6 @@ with DAG(dag_id="dynamic_task_pod_20", start_date=datetime.utcnow()) as dag:
         print(f"Total was {total}")
         return total
 
-    mylist=createList(20)
+    mylist=createList(25)
     added_values = add_one.expand(x=mylist)
     sum_it(added_values)
