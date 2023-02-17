@@ -6,15 +6,7 @@ from airflow import DAG
 from airflow.decorators import task
 
 
-def createList(n):
-    lst = []
-    for i in range(n+1):
-        lst.append(i)
-    lst.pop(0)
-    return (lst)
-
-
-with DAG(dag_id="dynamic_task_pod_20", start_date=datetime.utcnow()) as dag:
+with DAG(dag_id="dynamic_task_pod_n", start_date=datetime.utcnow()) as dag:
 
     @task
     def add_one(x: int):
@@ -27,6 +19,6 @@ with DAG(dag_id="dynamic_task_pod_20", start_date=datetime.utcnow()) as dag:
         return total
 
     # mylist=createList(43)
-    mylist = [i+1 for i in range(41)]
+    mylist = [i+1 for i in range(43)]
     added_values = add_one.expand(x=mylist)
     sum_it(added_values)
